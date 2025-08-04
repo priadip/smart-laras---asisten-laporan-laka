@@ -1,0 +1,20 @@
+{
+  "name": "Smart LARAS - Asisten Laporan Laka",
+  "description": "Aplikasi untuk membantu petugas Kepolisian mendokumentasikan kecelakaan lalu lintas dengan cepat menggunakan OCR, AI, dan berfungsi offline.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "prompt": "",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

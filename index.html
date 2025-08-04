@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Traffic Accident Report Assistant</title>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#3b82f6">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif; /* A common Tailwind font stack choice */
+    }
+    /* Custom scrollbar for better aesthetics, optional */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    #offline-indicator {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #71717a; /* zinc-500 for a less alarming offline notice */
+      color: white;
+      text-align: center;
+      padding: 8px;
+      font-size: 0.875rem; /* text-sm */
+      z-index: 10000; /* High z-index */
+      display: none; /* Hidden by default, shown by JS */
+      border-top: 1px solid #a1a1aa; /* zinc-400 */
+    }
+    #toast-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10001; /* Higher than offline indicator */
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    /* Print-specific styles */
+    #print-root { display: none; }
+    @media print {
+      body > #root, body > #toast-container, body > #offline-indicator {
+        display: none !important;
+      }
+      #print-root {
+        display: block !important;
+      }
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.0.1",
+    "@heroicons/react/": "https://esm.sh/@heroicons/react@^2.2.0/",
+    "jspdf": "https://esm.sh/jspdf@2.5.1",
+    "jspdf-autotable": "https://esm.sh/jspdf-autotable@3.8.2",
+    "file-saver": "https://esm.sh/file-saver@2.0.5",
+    "react-dom": "https://esm.sh/react-dom@^19.1.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-slate-100 antialiased">
+  <div id="root"></div>
+  <div id="print-root"></div>
+  <div id="toast-container"></div>
+  <div id="offline-indicator">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline-block mr-2 align-text-bottom">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+    </svg>
+    Anda sedang offline. Beberapa fitur (seperti Scan Otomatis) mungkin tidak tersedia.
+  </div>
+  <script type="module" src="/index.tsx"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          })
+          .catch(err => {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+    }
+  </script>
+</body>
+</html>
