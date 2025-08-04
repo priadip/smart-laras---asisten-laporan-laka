@@ -8,7 +8,7 @@ const API_KEY = "AIzaSyCvqRhqBzX3ub4KeGphCZhZNVcgKVApHSE";
 
 let ai: GoogleGenAI | null = null;
 
-if (API_KEY && API_KEY !== "MASUKKAN_KUNCI_API_GEMINI_ANDA_DI_SINI") {
+if (API_KEY && API_KEY !== "AIzaSyCvqRhqBzX3ub4KeGphCZhZNVcgKVApHSE") {
   ai = new GoogleGenAI({ apiKey: API_KEY });
 } else {
   console.error("Kunci API Gemini tidak ditemukan atau tidak valid. Silakan periksa geminiService.ts.");
