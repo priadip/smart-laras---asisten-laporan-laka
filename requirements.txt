@@ -5,3 +5,4 @@ num2words
 numpy
 Pillow
 sentence-transformers
+gunicorn
