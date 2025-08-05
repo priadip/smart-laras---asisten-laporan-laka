@@ -1,0 +1,8 @@
+flask
+flask-cors
+python-docx
+num2words
+numpy
+Pillow
+sentence-transformers
+gunicorngit
