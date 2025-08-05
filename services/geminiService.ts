@@ -4,7 +4,7 @@ import { GeminiOcrResult, GeminiExtractedSaksiData } from '../types';
 
 // TODO: Ganti placeholder ini dengan kunci API Gemini Anda yang valid.
 // Anda bisa mendapatkan kunci API dari https://aistudio.google.com/
-const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+const API_KEY = process.env.GEMINI_API_KEY;
 
 let ai: GoogleGenAI | null = null;
 
